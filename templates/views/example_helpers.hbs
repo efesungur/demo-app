@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countly Web SDK Demo</title>
+    <link href='css/style.css' rel='stylesheet' type='text/css'>
+    <link rel="icon" href="https://avatars3.githubusercontent.com/u/1756970?s=200&v=4">
+
+    <!--Countly script-->
+    <script type='text/javascript' src='js/countly/lib/countly.js'></script>
+    <script type='text/javascript'>
+
+        //initializing countly with params
+        Countly.init({
+            app_key: "YOUR_APP_KEY",
+            url: "https://try.count.ly", //your server goes here
+            debug: true
+        });
+
+        //track sessions automatically
+        Countly.track_sessions();
+
+        //track pageviews automatically
+        Countly.track_pageview();
+
+        //track any clicks to webpages automatically
+        Countly.track_clicks();
+
+        //track link clicks automatically
+        Countly.track_links();
+
+        //track form submissions automatically
+        Countly.track_forms();
+
+        //track javascript errors
+        Countly.track_errors({ jquery: "1.10", jqueryui: "1.10" });
+
+        //let's cause some errors
+        function cause_error() {
+            undefined_function();
+        }
+
+        function unhandled_error() {
+            Countly.add_log('Pressed unhandled button');
+            cause_error();
+        }
+
+        function handled_error() {
+            Countly.add_log('Pressed handled button');
+            try {
+                cause_error();
+            } catch (err) {
+                Countly.log_error(err)
+            }
+        }
+    </script>
+</head>
+<body>
+    {{>sidebar}}
+    <div class="main">
+        {{>header}}
+        <div class="content">
+            <form method='post' name='comments'>
+                <p><input type="text" name="message" value="Message Name"></p>
+                <p><textarea>Message</textarea></p>
+                <p><select>
+                        <option value='option1'>Option1</option>
+                        <option value='option2'>Option2</option>
+                        <option value='option3'>Option3</option>
+                    </select></p>
+                <p><input id="submit-form" type="submit" value="Submit"></p>
+            </form>
+            <p><button id="unhandled_error" onclick="unhandled_error()">Unhandled Error</button></p>
+            <p><button id="handled_error" onclick="handled_error()">Handled Error</button></p>
+            <p><a id="track_link" href='#link'>Dummy link</a></p>
+        </div>
+		{{>footer}}
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        //document.getElementById('submit-form').addEventListener('click', e => {
+        //    e.preventDefault();
+
+        //    var header = document.getElementById('h1-header');
+        //    var oldTextContent = header.textContent;
+        //    var oldStyle = header.style;
+
+        //    header.textContent = 'POST request sent'
+        //    header.style.color = "green"
+        //    setTimeout(() => {
+        //        header.textContent = oldTextContent;
+        //        header.style = oldStyle;
+        //    }, 2000)
+        //})
+
+        var header = document.getElementById('h1-header');
+            if (header.textContent !== 'Helpers') {
+                header.style.color = "green"
+                setTimeout(() => {
+                    header.textContent = 'Helpers';
+                    header.style.color = "black";
+                }, 2000)
+            }
+    </script>
+</body>
+</html>

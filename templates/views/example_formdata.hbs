@@ -1,0 +1,93 @@
+<!--
+Example on collecting user information from submitted forms
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countly Web SDK Demo</title>
+    <link href='css/style.css' rel='stylesheet' type='text/css'>
+    <link rel="icon" href="https://avatars3.githubusercontent.com/u/1756970?s=200&v=4">
+
+    <!--Countly script-->
+    <script type='text/javascript' src='js/countly/lib/countly.js'></script>
+    <script type='text/javascript'>
+
+        //initializing countly with params
+        Countly.init({
+            app_key: "YOUR_APP_KEY",
+            url: "https://try.count.ly", //your server goes here
+            debug: true
+        });
+        Countly.begin_session();
+        //gather user information automatically
+        Countly.collect_from_forms(document, true);
+    </script>
+</head>
+
+<body>
+    {{>sidebar}}
+    <div class="main">
+        {{>header}}
+        <div class="content">
+            <form method='post' name='test_form'>
+                <!-- ignore this input -->
+                <p><input type="text" name="e" value="notmyemail@notmydomain.com" class="cly_user_ignore"></p>
+                <!-- get email by value -->
+                <p><input type="text" name="e" value="myemail@mydomain.com"></p>
+                <!-- get username by label -->
+                <label for="usr">Username:</label>
+                <p><input type="text" name="usr" id="usr" value="myusername"></p>
+                <!-- get firstname by name -->
+                <p><input type="text" name="firstname" id="a1" value="Firstname"></p>
+                <!-- get lasttname by id -->
+                <p><input type="text" name="a2" id="lastname" value="Lastname"></p>
+                <!-- get oranization from select -->
+                <p>
+                    <select name='organization'>
+                        <option value='MyCompany' checked>MyCompany</option>
+                        <option value='MyCompany2'>Option2</option>
+                        <option value='MyCompany3'>Option3</option>
+                    </select>
+                </p>
+                <!-- get phone from textarea -->
+                <p><input type="text" name="telephone" id="telephone" value="1234567890"></p>
+                <!-- get customfield by class -->
+                <p><input type="text" name="custom" id="custom" value="value" class="cly_user_key"></p>
+                <p><input id="submit-form" type="submit" value="Submit"></p>
+            </form>
+        </div>
+        {{>footer}}
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        //document.getElementById('submit-form').addEventListener('click', e => {
+        //    e.preventDefault();
+
+        //    var header = document.getElementById('h1-header');
+        //    var oldTextContent = header.textContent;
+        //    var oldStyle = header.style;
+
+        //    header.textContent = 'POST request sent'
+        //    header.style.color = "green"
+        //    setTimeout(() => {
+        //        header.textContent = oldTextContent;
+        //        header.style = oldStyle;
+        //    }, 2000)
+        //})
+
+        var header = document.getElementById('h1-header');
+            if (header.textContent !== 'Form Data') {
+                header.style.color = "green"
+                setTimeout(() => {
+                    header.textContent = 'Form Data';
+                    header.style.color = "black";
+                }, 2000)
+            }
+    </script>
+</body>
+
+</html>

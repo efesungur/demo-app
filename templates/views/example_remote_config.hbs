@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countly Web SDK Demo</title>
+    <link href='css/style.css' rel='stylesheet' type='text/css'>
+    <link rel="icon" href="https://avatars3.githubusercontent.com/u/1756970?s=200&v=4">
+
+    <!--Countly script-->
+    <script type='text/javascript' src='js/countly/lib/countly.js'></script>
+    <script type='text/javascript'>
+        //initializing countly with params and remote config
+        Countly.init({
+            app_key: "YOUR_APP_KEY",
+            url: "https://try.count.ly", //your server goes here
+            debug: true,
+            remote_config: function (err, configs) {
+                //handle initial remote configs here
+                console.log(err, configs);
+            }
+        })
+    </script>
+</head>
+
+<body>
+    {{>sidebar}}
+    <div class="main">
+        {{>header}}
+        <div class="content">
+            <input type="button" onclick="reloadConfig()" value="Reload Config">
+            <input type="button" onclick="getConfig()" value="Get Config">
+            <input type="button" onclick="getConfig('test')" value="Get config for key Test">
+            <script type='text/javascript'>
+                //reload configs
+                function reloadConfig(ob) {
+                    Countly.fetch_remote_config(function (err, config) {
+                        alert(JSON.stringify(config));
+                    });
+                }
+                //get config
+                function getConfig(key) {
+                    alert(JSON.stringify(Countly.get_remote_config(key)));
+                }
+            </script>
+        </div>
+        {{>footer}}
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countly Web SDK Demo</title>
+    <link href='css/style.css' rel='stylesheet' type='text/css'>
+    <link rel="icon" href="https://avatars3.githubusercontent.com/u/1756970?s=200&v=4">
+
+    <!--Countly script-->
+    <script type='text/javascript' src='js/countly/lib/countly.js'></script>
+    <script type='text/javascript' src='js/countly/lib/plugin/boomerang/countly_boomerang.js'></script>
+    <script type='text/javascript' src="js/countly/lib/plugin/boomerang/boomerang-1.0.0.js"></script>
+    <script type='text/javascript'>
+
+        //initializing countly with params
+        Countly.init({
+            app_key: "YOUR_APP_KEY",
+            url: "https://try.count.ly", //your server goes here
+            debug: true
+        })
+        Countly.track_sessions();
+
+        //Calling APM plugin method
+        Countly.track_performance({
+            instrument_xhr: true,
+            captureXhrRequestResponse: true,
+            AutoXHR: {
+                alwaysSendXhr: true,
+                monitorFetch: true,
+                captureXhrRequestResponse: true
+            },
+            Continuity: {
+                enabled: true,
+                monitorLongTasks: true,
+                monitorPageBusy: true,
+                monitorFrameRate: true,
+                monitorInteractions: true,
+                afterOnload: true
+            }
+        });
+    </script>
+</head>
+
+<body>
+    {{>sidebar}}
+    <div class="main">
+        {{>header}}
+        <div class="content">
+
+        </div>
+        {{>footer}}
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

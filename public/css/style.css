@@ -1,0 +1,152 @@
+input[type=text], select, textarea {
+  width: 100%;
+  max-width: 500px;
+  padding: 10px;
+  margin: 4px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#unhandled_error {
+  background-color: red;
+}
+
+#track_link {
+  background-color: darkslategray;
+}
+
+#remove_consent {
+  background-color: orange;
+}
+
+input:focus {outline: thin;}
+button:focus {outline: thin;}
+select:focus {outline: thin;}
+option:focus {outline: thin;}
+textarea:focus {outline: thin;}
+
+input[type=button], input[type=submit], button {
+  width: 100%;
+  max-width: 500px;
+  background-color: #04c00e;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=button]:hover, input[type=submit]:hover, button:hover {
+  background-color: rgb(1, 211, 29);
+}
+
+/* button {
+  width: 100%;
+  max-width: 500px;
+  background-color: #04c00e;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgb(1, 211, 29);
+} */
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: auto;
+}
+
+.main {
+  margin-left: 200px; /* Same as the width of the sidenav */
+  font-size: 20px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  
+}
+
+.content {
+  flex-grow: 1;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  margin: 0px 0px 10px 0px;
+}
+
+a:link, a:visited {
+  background-color: #04c00e;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:hover, a:active {
+  background-color: rgb(1, 211, 29);
+}
+
+/* Fixed sidenav, full height */
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Style the sidenav links and the dropdown button */
+.sidenav a, .dropdown-btn {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #bebebe;
+  display: block;
+  border: none;
+  background: none;
+  width:100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+
+/* On mouse-over */
+.sidenav a:hover, .dropdown-btn:hover {
+  color: #04c00e;
+}
+
+
+/* Add an active class to the active dropdown button */
+.active {
+  background-color: green;
+  color: white;
+}
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+  display: none;
+  background-color: #262626;
+  padding-left: 8px;
+}
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}

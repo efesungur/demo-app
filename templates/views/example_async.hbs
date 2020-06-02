@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countly Web SDK Demo</title>
+    <link href='css/style.css' rel='stylesheet' type='text/css'>
+    <link rel="icon" href="https://avatars3.githubusercontent.com/u/1756970?s=200&v=4">
+
+    <script type='text/javascript'>
+        //some default pre init
+        var Countly = Countly || {};
+        Countly.q = Countly.q || [];
+
+        //provide countly initialization parameters
+        Countly.app_key = "YOUR_APP_KEY";
+        Countly.url = "https://try.count.ly"; //your server goes here
+        Countly.debug = true;
+
+        //start pushing function calls to queue
+        //track sessions automatically
+        Countly.q.push(['track_sessions']);
+
+        //track sessions automatically
+        Countly.q.push(['track_pageview']);
+
+        //load countly script asynchronously
+        (function () {
+            var cly = document.createElement('script'); cly.type = 'text/javascript';
+            cly.async = true;
+            //enter url of script here
+            cly.src = 'js/countly/lib/countly.js';
+            cly.onload = function () { Countly.init() };
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(cly, s);
+        })();
+    </script>
+</head>
+
+<body>
+    {{>sidebar}}
+    <div class="main">
+        {{>header}}
+        <div class="content">
+            <script type='text/javascript'>
+                //send event on button click
+                function clickEvent(ob) {
+                    Countly.q.push(['add_event', {
+                        key: "buttonClick",
+                        "segmentation": {
+                            "id": ob.id
+                        }
+                    }]);
+                }
+            </script>
+            <input type="button" id="testButton" onclick="clickEvent(this)" value="Test Button">
+        </div>
+        {{>footer}}
+    </div>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
