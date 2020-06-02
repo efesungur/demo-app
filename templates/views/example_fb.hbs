@@ -22,38 +22,52 @@ Example on collecting user information from FaceBook
         });
         Countly.begin_session();
     </script>
+
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '948231912290150',
+                cookie: true,
+                xfbml: true,
+                version: '{api-version}'
+            });
+
+            FB.AppEvents.logPageView();
+
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/all.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        function CountlyGatherFBData() {
+            Countly.collect_from_facebook({ "location": "location.name", "tz": "timezone", "somekey": "none.existing.key" });
+        };
+    </script>
 </head>
 <body>
     {{>sidebar}}
     <div class="main">
         {{>header}}
         <div class="content">
-            
+            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
         </div>
 		{{>footer}}
     </div>
-
-    <script src="https://connect.facebook.net/en_US/all.js"></script>
-    <script type="text/javascript">
-        FB.init({
-            appId: '251676171676751',
-            status: true,
-            cookie: true,
-            oauth: true
-        });
-
-        function CountlyGatherFBData() {
-            Countly.collect_from_facebook({ "location": "location.name", "tz": "timezone", "somekey": "none.existing.key" });
-        };
-
-        FB.getLoginStatus(function (stsResp) {
+    <script>
+        function checkLoginState() {
+            FB.getLoginStatus(function (stsResp) {
             if (stsResp.authResponse) {
-                //alert("is logged in");
+                alert("is logged in");
                 CountlyGatherFBData();
             } else {
                 FB.login(function (loginResp) {
                     if (loginResp.authResponse) {
-                        //alert("authenticated");
+                        alert("authenticated");
                         CountlyGatherFBData();
                     } else {
                         alert('Please authorize this application to use it!');
@@ -61,8 +75,8 @@ Example on collecting user information from FaceBook
                 });
             }
         });
+        }
     </script>
-
     <script src="js/script.js"></script>
 </body>
 </html>
