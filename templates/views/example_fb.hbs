@@ -59,7 +59,7 @@ Example on collecting user information from FaceBook
         {{>header}}
         <div class="content">
             <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
-            <button onclick="logout()">Facebook Logout</button>
+             <p><input type="button" id="logoutButton" onclick="logout()" value="Facebook Logout"></p>
         </div>
 		{{>footer}}
     </div>
