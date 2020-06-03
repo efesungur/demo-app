@@ -68,9 +68,7 @@ Example on collecting user information from FaceBook
                 FB.getLoginStatus(function (response) {
                     if (response && response.status === 'connected') {
                         FB.logout();
-                        var status = FB.getLoginStatus();
-
-                        console.log(status);
+                        alert('User is logged out')
                     }
                 });
             }
