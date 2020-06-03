@@ -65,12 +65,14 @@ Example on collecting user information from FaceBook
     </div>
     <script>
         function logout() {
-                FB.logout(function (response) {
+                FB.getLoginStatus(function (response) {
+                    if (response && response.status === 'connected') {
+                        FB.logout();
+                        var status = FB.getLoginStatus();
 
+                        console.log(status);
+                    }
                 });
-                var status = FB.getLoginStatus();
-
-                console.log(status);
             }
 
         function checkLoginState() {
