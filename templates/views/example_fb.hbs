@@ -58,9 +58,7 @@ Example on collecting user information from FaceBook
     <div class="main">
         {{>header}}
         <div class="content">
-            <div class="fb-login-button" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false" data-width="" scope="public_profile,email" onlogin="checkLoginState();"></div>
-
-            {{!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button> --}}
+            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
         </div>
 		{{>footer}}
     </div>
