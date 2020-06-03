@@ -68,7 +68,7 @@ Example on collecting user information from FaceBook
             if (typeof FB.logout == 'function') {
                 if (FB.getAuthResponse()) {
                     FB.logout(function (response) { 
-                        prompt('User is logged out')
+                        alert('User is logged out')
                     });
                     return;
                 }
