@@ -59,10 +59,21 @@ Example on collecting user information from FaceBook
         {{>header}}
         <div class="content">
             <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
+            <button onclick="logout()">Facebook Logout</button>
         </div>
 		{{>footer}}
     </div>
     <script>
+        function logout() {
+            FB.getLoginStatus((resStatus) => {
+                if(!resStatus.authResponse) {
+                    FB.logout((resLogout) => {
+                        console.log(resLogout)
+                    });
+                }
+            })
+        }
+
         function checkLoginState() {
             FB.getLoginStatus(function (stsResp) {
             if (stsResp.authResponse) {
