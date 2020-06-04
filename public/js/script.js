@@ -31,19 +31,3 @@ function notifyMe(text) {
     // At last, if the user has denied notifications, and you 
     // want to be respectful there is no need to bother them any more.
 }
-
-function callShowLoader () {
-    Countly._internals.showLoader();
-}
-
-function callHideLoader () {
-    Countly._internals.hideLoader();
-}
-
-document.getElementById('button_show_loader').addEventListener('click', () => {
-    callShowLoader();
-})
-
-document.getElementById('button_hide_loader').addEventListener('click', () => {
-    callHideLoader();
-})
