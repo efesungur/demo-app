@@ -16,8 +16,8 @@ Example on collecting user information from FaceBook
 
         //initializing countly with params
         Countly.init({
-            app_key: "YOUR_APP_KEY",
-            url: "https://try.count.ly", //your server goes here
+            app_key: "a39b94d9d589f2c204e69f5ee28be8a272e5133e",
+            url: "http://192.168.126.161/", //your server goes here
             debug: true
         });
         Countly.begin_session();
@@ -29,7 +29,7 @@ Example on collecting user information from FaceBook
                 appId: '948231912290150',
                 cookie: true,
                 xfbml: true,
-                version: '{api-version}'
+                version: 'v2.7'
             });
 
             FB.AppEvents.logPageView();

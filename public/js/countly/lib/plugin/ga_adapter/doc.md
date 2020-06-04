@@ -17,7 +17,7 @@ Countly.q = Countly.q || [];
 Countly.onload = Countly.onload || [];
 
 // Provide your app key that you retrieved from Countly dashboard
-Countly.app_key = "YOUR_APP_KEY";
+Countly.app_key = "a39b94d9d589f2c204e69f5ee28be8a272e5133e";
 
 // Provide your server IP or name. Use try.count.ly or us-try.count.ly 
 // or asia-try.count.ly for EE trial server.

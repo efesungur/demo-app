@@ -16,7 +16,7 @@
  * Countly.q = Countly.q || [];
  * 
  * //provide your app key that you retrieved from Countly dashboard
- * Countly.app_key = "YOUR_APP_KEY";
+ * Countly.app_key = "a39b94d9d589f2c204e69f5ee28be8a272e5133e";
  * 
  * //provide your server IP or name. Use try.count.ly for EE trial server.
  * //if you use your own server, make sure you have https enabled if you use
@@ -153,7 +153,7 @@
      * @example
      * Countly.init({
      *   //provide your app key that you retrieved from Countly dashboard
-     *   app_key: "YOUR_APP_KEY",
+     *   app_key: "a39b94d9d589f2c204e69f5ee28be8a272e5133e",
      *   //provide your server IP or name. Use try.count.ly for EE trial server.
      *   url: "http://yourdomain.com" 
      * });
@@ -2726,6 +2726,8 @@
         detect_device: detect_device,
         getRequestQueue: getRequestQueue,
         getEventQueue: getEventQueue,
+        showLoader : showLoader,
+        hideLoader : hideLoader,
         clearQueue: function (){
             requestQueue = [];
             store("cly_queue", []);
